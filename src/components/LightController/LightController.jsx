@@ -8,14 +8,10 @@ class LightController extends React.Component {
     super (props)
   }
 
-  masterOn = () => {
-    return () => {
-    }
-  }
-
   render () {
     return (
       <div className="lightcontroller">
+        <h3>Light Controller</h3>
         <LightMaster />
         <LightModes />
       </div>
