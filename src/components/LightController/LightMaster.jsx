@@ -22,7 +22,7 @@ class LightMaster extends React.Component {
     }
   }
 
-  render() {
+  render () {
     return (
       <fieldset>
         <legend>Master</legend>
