@@ -1,24 +1,30 @@
 import React from 'react'
+import immutable from 'immutable'
+import $ from 'jquery'
 
 import Switch from './Switch'
 
 class LightMaster extends React.Component {
   constructor (props) {
     super (props)
-    this.state = {
-      masterState: false,
-      silentState: true
-    }
+    this.state = {states: immutable.fromJS([])}
+  }
+
+  componentWillMount() {
+    $.ajax('localhost:3001/api/light/state').then((state) => {
+      console.log('Retreived state: %o', state)
+      this.setState({states: immutable.fromJS(state)})
+    })
   }
 
   toggleMaster = () => {
     return () => {
-      console.log("Toggling master")
+      console.log('toggle-master')
     }
   }
   toggleSilent = () => {
     return () => {
-      console.log("Toggling silent")
+      console.log('toggle-silent')
     }
   }
 
@@ -27,9 +33,9 @@ class LightMaster extends React.Component {
       <fieldset>
         <legend>Master</legend>
         <span>Power</span>
-        <Switch startState={this.state.masterState} />
+        <Switch state={this.state.master} onChange={this.toggleMaster()} />
         <span>Silent</span>
-        <Switch startState={this.state.silentState} />
+        <Switch state={this.state.silent} onChange={this.toggleSilent()} />
       </fieldset>
     )
   }

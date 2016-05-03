@@ -15,7 +15,8 @@
     "react": "^15.0.1",
     "react-addons-update": "^15.0.1",
     "react-dom": "15.0.1",
-    "react-websocket": "git+https://github.com/ohnoitsyou/react-websocket.git"
+    "react-websocket": "git+https://github.com/ohnoitsyou/react-websocket.git",
+    "socket.io": "^1.4.5"
   },
   "devDependencies": {
     "babel-core": "^6.6.5",

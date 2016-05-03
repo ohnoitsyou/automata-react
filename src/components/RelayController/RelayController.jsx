@@ -18,7 +18,7 @@ class RelayController extends React.Component {
 
   render () {
     const relays = this.state.states.map((state, id) => 
-      <RelayBox title={"Relay " + id} startState={state} />
+      <RelayBox title={"Relay " + id} startState={state} key={id}/>
     )
     return (
       <div className="relaycontroller">
