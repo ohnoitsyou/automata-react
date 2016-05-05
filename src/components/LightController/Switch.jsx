@@ -12,7 +12,7 @@ class Switch extends React.Component {
   render () {
     return (
 			<span className="toggle">
-				<input type="checkbox" onChange={this._onChange} checked={this.state.checked} />
+				<input type="checkbox" onChange={this.props.onChange} checked={this.props.checked} />
 				<label data-off="Off" data-on="On"></label>
 			</span>
     )

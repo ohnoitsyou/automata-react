@@ -10,7 +10,7 @@ class LightMaster extends React.Component {
   }
 
   componentWillMount() {
-    $.ajax('localhost:3001/api/light/state').then((state) => {
+    $.ajax('http://localhost:3001/api/light/state').then((state) => {
       console.log('Retreived state: %o', state)
       this.setState({master: state.master, silent: state.silent});
     })
@@ -34,9 +34,9 @@ class LightMaster extends React.Component {
       <fieldset>
         <legend>Master</legend>
         <span>Power</span>
-        <Switch state={this.state.master} onChange={this.toggleMaster()} />
+        <Switch checked={this.state.master} onChange={this.toggleMaster()} />
         <span>Silent</span>
-        <Switch state={this.state.silent} onChange={this.toggleSilent()} />
+        <Switch checked={this.state.silent} onChange={this.toggleSilent()} />
       </fieldset>
     )
   }
