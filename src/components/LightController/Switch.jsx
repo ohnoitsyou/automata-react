@@ -3,17 +3,9 @@ import React from 'react'
 require('./Switch.css')
 
 class Switch extends React.Component {
-  constructor (props) {
-    super (props)
-    this.state = {
-      checked: this.props.state
-    }
-  }
-  
   _onChange = (event) => {
     console.log('onChange fired')
     this.props.onChange()
-    this.setState({checked: event.target.checked})
     console.log(event.target.checked)
   }
 

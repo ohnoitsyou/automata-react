@@ -7,7 +7,7 @@ import Switch from './Switch'
 class LightMaster extends React.Component {
   constructor (props) {
     super (props)
-    this.state = {states: immutable.fromJS([])}
+    this.state = {states: immutable.fromJS({})}
   }
 
   componentWillMount() {
@@ -20,11 +20,16 @@ class LightMaster extends React.Component {
   toggleMaster = () => {
     return () => {
       console.log('toggle-master')
+
+      let oldState = this.state.states.get('master');
+      this.setState({states: this.state.states.set('master', !oldState)});
     }
   }
   toggleSilent = () => {
     return () => {
       console.log('toggle-silent')
+      let oldState = this.state.states.get('silent');
+      this.setState({states: this.state.states.set('silent', !oldState)});
     }
   }
 
@@ -33,9 +38,9 @@ class LightMaster extends React.Component {
       <fieldset>
         <legend>Master</legend>
         <span>Power</span>
-        <Switch state={this.state.master} onChange={this.toggleMaster()} />
+        <Switch state={this.state.states.get('master')} onChange={this.toggleMaster()} />
         <span>Silent</span>
-        <Switch state={this.state.silent} onChange={this.toggleSilent()} />
+        <Switch state={this.state.get('silent')} onChange={this.toggleSilent()} />
       </fieldset>
     )
   }
