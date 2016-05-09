@@ -15,17 +15,11 @@ class LightController extends React.Component {
     this.devices = []
   }
 
-  componentWillMount() {
-    $.get('http://localhost:3001/api/light/devices').then((resp) => {
-      console.log(resp.lights)
-      //this.setState({devices: resp.lights})
-      this.devices = resp.lights
-    })
-  }
-
   deviceSelect = (device) => {
-    return () => {
+    return (device) => {
+      console.log('Bubble selection', device)
       this.setState({target: device})
+      console.log('target:', this.state.target)
     }
   }
 
@@ -33,9 +27,9 @@ class LightController extends React.Component {
     return (
       <div className="lightcontroller">
         <h3>Light Controller</h3>
-        <DeviceSelector name="lightDevicePicker" devices={this.devices}/>
-        <LightMaster socket={socket} />
-        <LightModes />
+        <DeviceSelector name="lightDevicePicker" bubbleSelect={this.deviceSelect()} />
+        <LightMaster target={this.state.target} socket={socket} />
+        <LightModes target={this.state.target} />
       </div>
     )
   }
