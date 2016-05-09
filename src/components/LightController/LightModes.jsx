@@ -1,4 +1,5 @@
 import React from 'react'
+import $ from 'jquery'
 
 import ModeButton from './ModeButton'
 
@@ -7,10 +8,12 @@ class LightModes extends React.Component {
     super(props)
   }
 
-
   setMode = (mode) => {
     return () => {
       console.log("Setting mode: %s", mode)
+      $.post('http://localhost:3001/api/light/mode/'+mode).then((resp) => {
+        console.log('Mode changed %o', resp)
+      })
     }
   }
 

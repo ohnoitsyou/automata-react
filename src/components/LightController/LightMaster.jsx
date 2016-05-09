@@ -19,13 +19,23 @@ class LightMaster extends React.Component {
   toggleMaster = () => {
     return () => {
       console.log('toggle-master')
-      this.setState({master: !this.state.master});
+      $.post('http://localhost:3001/api/light/toggle/master').then((resp) => {
+        if(this.state.master != resp.mode) {
+          console.log('updating master state: %s', !this.state.master)
+          this.setState({master: !this.state.master});
+        }
+      })
     }
   }
   toggleSilent = () => {
     return () => {
       console.log('toggle-silent')
-      this.setState({silent: !this.state.silent});
+      $.post('http://localhost:3001/api/light/toggle/silent').then((resp) => {
+        if(this.state.silent != resp.mode) {
+          console.log('updating silent state: %s', !this.state.silent)
+          this.setState({silent: !this.state.silent});
+        }
+      })
     }
   }
 
