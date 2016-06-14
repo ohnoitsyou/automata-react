@@ -10,16 +10,17 @@ class LightMaster extends React.Component {
   }
 
   componentWillMount() {
-    $.ajax('http://localhost:3001/api/light/state').then((state) => {
-      console.log('Retreived state: %o', state)
-      this.setState({master: state.master, silent: state.silent});
+    $.ajax('http://localhost:3000/api/light/state/'+this.props.target).then((state) => {
+      console.log('Retreived state: %s : %o', this.props.target, state)
+      this.setState({master: state.master, silent: state.silent})
     })
   }
 
   toggleMaster = () => {
     return () => {
       console.log('toggle-master')
-      $.post('http://localhost:3001/api/light/toggle/master').then((resp) => {
+      $.post('http://localhost:3000/api/light/toggle/master/' + this.props.target).then((resp) => {
+        // if another client changed the state, then don't update
         if(this.state.master != resp.mode) {
           console.log('updating master state: %s', !this.state.master)
           this.setState({master: !this.state.master});
@@ -30,7 +31,8 @@ class LightMaster extends React.Component {
   toggleSilent = () => {
     return () => {
       console.log('toggle-silent')
-      $.post('http://localhost:3001/api/light/toggle/silent').then((resp) => {
+      $.post('http://localhost:3000/api/light/toggle/silent/' + this.props.target).then((resp) => {
+        // if another client changed the state, then don't update
         if(this.state.silent != resp.mode) {
           console.log('updating silent state: %s', !this.state.silent)
           this.setState({silent: !this.state.silent});

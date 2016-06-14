@@ -11,7 +11,7 @@ class LightModes extends React.Component {
   setMode = (mode) => {
     return () => {
       console.log("Setting mode: %s", mode)
-      $.post('http://localhost:3001/api/light/mode/'+mode).then((resp) => {
+      $.post('http://localhost:3000/api/light/mode/' + mode + '/' + this.props.target).then((resp) => {
         console.log('Mode changed %o', resp)
       })
     }

@@ -13,7 +13,7 @@ class RelayController extends React.Component {
   }
 
   componentWillMount() {
-    this.setState({states: [{'state': false, 'id': 1}, {'state': true, 'id': 2}]})
+    this.setState({states: [{'state': false, 'id': 1}, {'state': true, 'id': 2},{'state': false,'id': 3}]})
   }
 
   render () {
